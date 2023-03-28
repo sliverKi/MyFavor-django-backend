@@ -138,8 +138,15 @@ MEDIA_URL = "user-uploads/"
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_ALLOW = True
-CORS_ALLOWED_ORIGINS_ALL = True
-CSRF_TRUSTED_ORIGINS = ["http://*.myfavor.co.kr", "https://*.myfavor.co.kr"]
+
+
+if DEBUG:
+    CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:3000"]
+    CSRF_TRUSTED_ORIGINS =["http://127.0.0.1:3000"]
+
+else :
+    CSRF_TRUSTED_ORIGINS = ["https://myfavor-front.onrender.com",]
+    CORS_ALLOWED_ORIGINS = ["https://myfavor-front.onrender.com"]
 
 
 CF_TOKEN=env("CF_TOKEN")
