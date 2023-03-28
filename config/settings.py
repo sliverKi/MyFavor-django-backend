@@ -3,6 +3,7 @@ from pathlib import Path
 import os
 import environ
 import my_settings
+import dj_database_url
 
 env = environ.Env()
 
@@ -13,6 +14,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY")
 
 ALLOWED_HOSTS = ["*"]
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 THIRD_PARTY_APPS = [
     "rest_framework",
@@ -41,6 +45,7 @@ INSTALLED_APPS = SYSTEM_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -70,8 +75,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-DEBUG = True
-DATABASES = my_settings.DATABASES
+DEBUG = 'RENDER' not in os.environ
+
+
+DATABASES =env("DATABASES")
+
+STATIC_URL = '/static/'
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -119,8 +131,6 @@ CORS_ORIGIN_ALLOW = True
 CORS_ALLOWED_ORIGINS_ALL = True
 CSRF_TRUSTED_ORIGINS = ["http://*.myfavor.co.kr", "https://*.myfavor.co.kr"]
 
-CSRF_COOKIE_SECURE=True
-SESSION_COOKIE_SECURE=True
 
 CF_TOKEN=env("CF_TOKEN")
 CF_ID=env("CF_ID")
