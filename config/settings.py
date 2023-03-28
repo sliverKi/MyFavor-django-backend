@@ -2,7 +2,6 @@ from decouple import config
 from pathlib import Path
 import os
 import environ
-import my_settings
 import dj_database_url
 
 env = environ.Env()
