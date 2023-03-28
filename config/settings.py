@@ -77,9 +77,20 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DEBUG = 'RENDER' not in os.environ
 
-
-DATABASES =env("DATABASES")
-
+if DEBUG:
+    DATABASES = {
+        'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR/ 'db.sqlite3',
+            }
+    }
+else:
+     DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,
+        )
+                    
+    }
 STATIC_URL = '/static/'
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
