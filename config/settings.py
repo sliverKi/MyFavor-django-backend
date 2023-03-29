@@ -91,9 +91,6 @@ else:
                     
     }
 STATIC_URL = '/static/'
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -124,6 +121,8 @@ USE_TZ = False
 
 STATIC_URL = "/static/"
 if not DEBUG:
+    SESSION_COOKIE_DOMAIN = ".myfavor.site"
+    CSRF_COOKIE_DOMAIN = ".myfavor.site"
     STATIC_ROOT=os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 
