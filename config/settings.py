@@ -144,8 +144,8 @@ if DEBUG:
     CSRF_TRUSTED_ORIGINS =["http://127.0.0.1:3000"]
 
 else :
-    CSRF_TRUSTED_ORIGINS = ["https://myfavor-front-96gl.onrender.com/",]
-    CORS_ALLOWED_ORIGINS = ["https://myfavor-front-96gl.onrender.com/"]
+    CSRF_TRUSTED_ORIGINS = ["https://myfavor.site",]
+    CORS_ALLOWED_ORIGINS = ["https://myfavor.site"]
 
 
 CF_TOKEN=env("CF_TOKEN")
