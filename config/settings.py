@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 import environ
 import dj_database_url
-
+#>> 최종코드
 env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
