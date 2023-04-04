@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^19.7.5",
+    "puppeteer-core": "^19.7.5",
+    "xlsx": "^0.18.5",
+    "yarn": "^1.22.19"
+  }
+}
