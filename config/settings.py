@@ -138,7 +138,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_ALLOW = True
 CORS_ALLOW_ALL_ORIGINS=True
- CSRF_TRUSTED_ORIGINS =["http://127.0.0.1:3000", "http://localhost:3000","https://myfavor.site"]
+CSRF_TRUSTED_ORIGINS =["http://127.0.0.1:3000", "http://localhost:3000","https://myfavor.site"]
 # if DEBUG:
 #     CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:3000"]
 #     CSRF_TRUSTED_ORIGINS =["http://127.0.0.1:3000"]
